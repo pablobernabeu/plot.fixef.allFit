@@ -23,6 +23,8 @@ plot.fixef.allFit = function(allFit_output,
                              interaction_symbol_x = TRUE) {
   
   require(lme4)
+  require(dfoptim)
+  require(optimx)
   require(dplyr)
   require(reshape2)
   require(stringr)
