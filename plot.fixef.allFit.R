@@ -7,8 +7,8 @@ plot.fixef.allFit = function(allFit_output,
                              # Multiply Y axis limits by a factor (only 
                              # available if shared_y_axis_limits = TRUE)
                              multiply_y_axis_limits = 1, 
-                             # Number of decimal points
-                             decimal_points = NULL,
+                             # Number of decimal places
+                             decimal_places = NULL,
                              # Select predictors
                              select_predictors = NULL, 
                              # Number of rows
@@ -71,24 +71,24 @@ plot.fixef.allFit = function(allFit_output,
     }
   }
   
-  # If decimal_points were supplied, convert number to the format used in 'scales' package
-  if(!is.null(decimal_points)) {
-    decimal_points = 
-      ifelse(decimal_points == 1, 0.1, 
-             ifelse(decimal_points == 2, 0.01, 
-                    ifelse(decimal_points == 3, 0.001, 
-                           ifelse(decimal_points == 4, 0.0001, 
-                                  ifelse(decimal_points == 5, 0.00001, 
-                                         ifelse(decimal_points == 6, 0.000001, 
-                                                ifelse(decimal_points == 7, 0.0000001, 
-                                                       ifelse(decimal_points == 8, 0.00000001, 
-                                                              ifelse(decimal_points == 9, 0.000000001, 
-                                                                     ifelse(decimal_points == 10, 0.0000000001,
-                                                                            ifelse(decimal_points == 11, 0.00000000001,
-                                                                                   ifelse(decimal_points == 12, 0.000000000001,
-                                                                                          ifelse(decimal_points == 13, 0.0000000000001,
-                                                                                                 ifelse(decimal_points == 14, 0.00000000000001,
-                                                                                                        ifelse(decimal_points >= 15, 0.000000000000001, 
+  # If decimal_places were supplied, convert number to the format used in 'scales' package
+  if(!is.null(decimal_places)) {
+    decimal_places = 
+      ifelse(decimal_places == 1, 0.1, 
+             ifelse(decimal_places == 2, 0.01, 
+                    ifelse(decimal_places == 3, 0.001, 
+                           ifelse(decimal_places == 4, 0.0001, 
+                                  ifelse(decimal_places == 5, 0.00001, 
+                                         ifelse(decimal_places == 6, 0.000001, 
+                                                ifelse(decimal_places == 7, 0.0000001, 
+                                                       ifelse(decimal_places == 8, 0.00000001, 
+                                                              ifelse(decimal_places == 9, 0.000000001, 
+                                                                     ifelse(decimal_places == 10, 0.0000000001,
+                                                                            ifelse(decimal_places == 11, 0.00000000001,
+                                                                                   ifelse(decimal_places == 12, 0.000000000001,
+                                                                                          ifelse(decimal_places == 13, 0.0000000000001,
+                                                                                                 ifelse(decimal_places == 14, 0.00000000000001,
+                                                                                                        ifelse(decimal_places >= 15, 0.000000000000001, 
                                                                                                                0.001
                                                                                                         )))))))))))))))
   }
@@ -152,56 +152,56 @@ plot.fixef.allFit = function(allFit_output,
           strip.background = element_rect(fill = 'grey96'), legend.position = 'none')
   
   # Below, the function scale_y_continuous is applied conditionally to avoid overriding settings. First, 
-  # if shared_y_axis_limits = TRUE and decimal_points were supplied, set the same Y axis limits in 
-  # every plot and set decimal_points. By default, also expand limits by a seventh of its original 
+  # if shared_y_axis_limits = TRUE and decimal_places were supplied, set the same Y axis limits in 
+  # every plot and set decimal_places. By default, also expand limits by a seventh of its original 
   # limit, and allow further multiplication of limits through multiply_y_axis_limits.
-  if(shared_y_axis_limits == TRUE & !is.null(decimal_points)) {
+  if(shared_y_axis_limits == TRUE & !is.null(decimal_places)) {
     
     intercept_plot = intercept_plot +
       scale_y_continuous(limits = c(min(allFit_fixef$value) - allFit_fixef$value %>% abs %>% 
                                       max / 7 * multiply_y_axis_limits,
                                     max(allFit_fixef$value) + allFit_fixef$value %>% abs %>% 
                                       max / 7 * multiply_y_axis_limits), 
-                         # Set number of decimal points
-                         labels = scales::label_number(accuracy = decimal_points))
+                         # Set number of decimal places
+                         labels = scales::label_number(accuracy = decimal_places))
     
     predictors_plot = predictors_plot + 
       scale_y_continuous(limits = c(min(allFit_fixef$value) - allFit_fixef$value %>% abs %>% 
                                       max / 7 * multiply_y_axis_limits,
                                     max(allFit_fixef$value) + allFit_fixef$value %>% abs %>% 
                                       max / 7 * multiply_y_axis_limits), 
-                         # Set number of decimal points
-                         labels = scales::label_number(accuracy = decimal_points))
+                         # Set number of decimal places
+                         labels = scales::label_number(accuracy = decimal_places))
     
-    # Else, if shared_y_axis_limits = TRUE but decimal_points were not supplied, do as above but without
-    # setting decimal_points.
-  } else if(shared_y_axis_limits == TRUE & is.null(decimal_points)) {
+    # Else, if shared_y_axis_limits = TRUE but decimal_places were not supplied, do as above but without
+    # setting decimal_places.
+  } else if(shared_y_axis_limits == TRUE & is.null(decimal_places)) {
     
     intercept_plot = intercept_plot +
       scale_y_continuous(limits = c(min(allFit_fixef$value) - allFit_fixef$value %>% abs %>% 
                                       max / 7 * multiply_y_axis_limits,
                                     max(allFit_fixef$value) + allFit_fixef$value %>% abs %>% 
                                       max / 7 * multiply_y_axis_limits),
-                         # Set number of decimal points
-                         labels = scales::label_number(accuracy = decimal_points))
+                         # Set number of decimal places
+                         labels = scales::label_number(accuracy = decimal_places))
     
     predictors_plot = predictors_plot + 
       scale_y_continuous(limits = c(min(allFit_fixef$value) - allFit_fixef$value %>% abs %>% 
                                       max / 7 * multiply_y_axis_limits,
                                     max(allFit_fixef$value) + allFit_fixef$value %>% abs %>% 
                                       max / 7 * multiply_y_axis_limits),
-                         # Set number of decimal points
-                         labels = scales::label_number(accuracy = decimal_points))
+                         # Set number of decimal places
+                         labels = scales::label_number(accuracy = decimal_places))
     
-    # Else, if shared_y_axis_limits = FALSE and decimal_points were supplied, set decimal_points. 
-  } else if(shared_y_axis_limits == FALSE & !is.null(decimal_points)) {
+    # Else, if shared_y_axis_limits = FALSE and decimal_places were supplied, set decimal_places. 
+  } else if(shared_y_axis_limits == FALSE & !is.null(decimal_places)) {
     
-    # Set number of decimal points in both plots
+    # Set number of decimal places in both plots
     intercept_plot = intercept_plot +
-      scale_y_continuous(labels = scales::label_number(accuracy = decimal_points))
+      scale_y_continuous(labels = scales::label_number(accuracy = decimal_places))
     
     predictors_plot = predictors_plot +
-      scale_y_continuous(labels = scales::label_number(accuracy = decimal_points))
+      scale_y_continuous(labels = scales::label_number(accuracy = decimal_places))
   }
   
   # Plot matrix: based on number of predictors_plot_nrow, adjust height of Y axis title
