@@ -46,7 +46,7 @@ plot.fixef.allFit = function(allFit_output,
     allFit_fixef$Optimizer = paste0(as.numeric(allFit_fixef$Optimizer), '. ', allFit_fixef$Optimizer)
   }
   
-  # If select_predictors were supplied, select them along with the intercept (the latter required)
+  # If select_predictors was supplied, select them along with the intercept (the latter required)
   if(!is.null(select_predictors)) {
     allFit_fixef = allFit_fixef %>% dplyr::filter(fixed_effect %in% c('(Intercept)', select_predictors))
   }
@@ -71,7 +71,7 @@ plot.fixef.allFit = function(allFit_output,
     }
   }
   
-  # If decimal_places were supplied, convert number to the format used in 'scales' package
+  # If decimal_places was supplied, convert number to the format used in 'scales' package
   if(!is.null(decimal_places)) {
     decimal_places = 
       ifelse(decimal_places == 1, 0.1, 
@@ -152,7 +152,7 @@ plot.fixef.allFit = function(allFit_output,
           strip.background = element_rect(fill = 'grey96'), legend.position = 'none')
   
   # Below, the function scale_y_continuous is applied conditionally to avoid overriding settings. First, 
-  # if shared_y_axis_limits = TRUE and decimal_places were supplied, set the same Y axis limits in 
+  # if shared_y_axis_limits = TRUE and decimal_places was supplied, set the same Y axis limits in 
   # every plot and set decimal_places. By default, also expand limits by a seventh of its original 
   # limit, and allow further multiplication of limits through multiply_y_axis_limits.
   if(shared_y_axis_limits == TRUE & !is.null(decimal_places)) {
@@ -193,7 +193,7 @@ plot.fixef.allFit = function(allFit_output,
                          # Set number of decimal places
                          labels = scales::label_number(accuracy = decimal_places))
     
-    # Else, if shared_y_axis_limits = FALSE and decimal_places were supplied, set decimal_places. 
+    # Else, if shared_y_axis_limits = FALSE and decimal_places was supplied, set decimal_places. 
   } else if(shared_y_axis_limits == FALSE & !is.null(decimal_places)) {
     
     # Set number of decimal places in both plots
