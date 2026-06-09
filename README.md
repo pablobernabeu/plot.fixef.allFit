@@ -1,11 +1,11 @@
 # plot.fixef.allFit
 
-> **This function now lives in the [`statviz`](https://github.com/pablobernabeu/statviz) package.**
+> **This function now lives in the [`depictr`](https://github.com/pablobernabeu/depictr) package.**
 
 Visualise the output from `lme4::allFit()`, to look at the fixed-effect
 estimates for a set of predictors across a set of optimizers (e.g. bobyqa,
 Nelder-Mead). This standalone function has been generalised, renamed and folded
-into **statviz**, a unified, CRAN-grade package for visualising statistical
+into **depictr**, a unified, CRAN-grade package for visualising statistical
 models and data.
 
 The successor is **`optimizer_fixef_plot()`**, which:
@@ -15,13 +15,13 @@ The successor is **`optimizer_fixef_plot()`**, which:
 * accepts either an `lme4::allFit()` object **or** a plain data frame, and
 * shares a consistent theme and palette with the rest of the package.
 
-## Use it via statviz
+## Use it via depictr
 
 ```r
 # install.packages("remotes")
-remotes::install_github("pablobernabeu/statviz")
+remotes::install_github("pablobernabeu/depictr")
 
-library(statviz)
+library(depictr)
 
 m  <- lme4::lmer(life_satisfaction ~ stress + (1 | region),
                  data = wellbeing_survey)
@@ -29,8 +29,8 @@ af <- lme4::allFit(m)
 optimizer_fixef_plot(af)
 ```
 
-See the [statviz repository](https://github.com/pablobernabeu/statviz) and
-`vignette("model-estimates", package = "statviz")` for details.
+See the [depictr repository](https://github.com/pablobernabeu/depictr) and
+`vignette("model-estimates", package = "depictr")` for details.
 
 ---
 
